@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Component :is="layout">
+      <RouterView />
+    </Component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EmptyLayout from "./layouts/EmptyLayout.vue";
+import MainLayout from "./layouts/MainLayout.vue";
+
+import M from "materialize-css";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MainLayout,
+    EmptyLayout
+  },
+
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || "empty") + "-layout";
+    }
+  },
+
+  mounted() {
+    M.AutoInit();
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped lang="scss">
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "assets/index.css";
 </style>
