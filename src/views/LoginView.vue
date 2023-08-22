@@ -40,7 +40,9 @@
 
       <p class="center">
         Нет аккаунта?
-        <a href="/">Зарегистрироваться</a>
+        <RouterLink to="/register">
+          Зарегистрироваться
+        </RouterLink>
       </p>
     </div>
   </form>
@@ -50,7 +52,7 @@
 export default {
   methods: {
     submitHandler() {
-
+      this.$router.push("/");
     }
   }
 };
