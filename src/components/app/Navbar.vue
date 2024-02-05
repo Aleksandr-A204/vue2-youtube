@@ -24,7 +24,7 @@
             href="#"
             data-target="dropdown"
           >
-            USER NAME
+            {{ info.name }}
             <Icon
               icon="material-symbols:arrow-drop-down"
               color="black"
@@ -70,6 +70,8 @@
 <script>
 import M from "materialize-css";
 
+import { mapGetters } from "vuex";
+
 export default {
 
   data() {
@@ -78,6 +80,17 @@ export default {
       interval: null,
       dropdown: null
     };
+  },
+
+  computed: {
+    ...mapGetters({
+      info: "info/info"
+    })
+
+    // name() {
+    //   console.log(this.$store.getters.info.name);
+    //   return this.$store.getters.info.name;
+    // }
   },
 
   mounted() {
@@ -98,7 +111,8 @@ export default {
   },
 
   methods: {
-    logout() {
+    async logout() {
+      await this.$store.dispatch("authentication/logout");
       this.$router.push("/login?message=logout");
     }
   }

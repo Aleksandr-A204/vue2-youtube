@@ -1,7 +1,10 @@
 import { Icon } from "@iconify/vue2";
 
+import Loader from "./Loader.vue";
+
 const Components = {
-  Icon
+  Icon,
+  Loader
 };
 
 const install = function(Vue) {
