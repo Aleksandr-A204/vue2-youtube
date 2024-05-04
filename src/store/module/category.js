@@ -4,11 +4,16 @@ export default {
   namespaced: true,
 
   state: {
+    byId: {},
     title: "",
     categories: []
   },
 
   mutations: {
+    setCategoryById(state, id) {
+      state.byId = id;
+    },
+
     setCategory(state, title) {
       state.title = title;
     },
@@ -48,9 +53,27 @@ export default {
       try {
         const uid = await this.dispatch("authentication/getUid");
 
-        return onValue(ref(getDatabase(), `/users/${uid}/categories`), snapshot => {
+        return onValue(ref(getDatabase(), `/users/${uid}/categories`), async snapshot => {
           const categories = snapshot.val() || {};
-          commit("setCategories", Object.keys(categories).map(key => ({ ...categories[key], id: key })));
+          await commit("setCategories", Object.keys(categories).map(key => ({ ...categories[key], id: key })));
+        },
+        {
+          onlyOnce: true
+        });
+      }
+      catch (err) {
+        this.commit("setError", err);
+        throw err;
+      }
+    },
+
+    async fetchCategoryById({ commit }, id) {
+      try {
+        const uid = await this.dispatch("authentication/getUid");
+
+        onValue(child(ref(getDatabase(), `/users/${uid}/categories`), id), async snapshot => {
+          const category = snapshot.val() || {};
+          await commit("setCategoryById", category);
         },
         {
           onlyOnce: true
@@ -66,6 +89,10 @@ export default {
   getters: {
     categories(state) {
       return state.categories;
+    },
+
+    categoryById(state) {
+      return state.byId;
     }
   }
 };

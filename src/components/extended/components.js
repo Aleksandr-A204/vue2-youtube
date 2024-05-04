@@ -1,10 +1,12 @@
 import { Icon } from "@iconify/vue2";
 
 import Loader from "./Loader.vue";
+import Paginate from "vuejs-paginate";
 
 const Components = {
   Icon,
-  Loader
+  Loader,
+  Paginate
 };
 
 const install = function(Vue) {

@@ -7,7 +7,10 @@
     >
       <Navbar @click="isOpen=!isOpen" />
 
-      <Sidebar :value="isOpen" />
+      <Sidebar
+        :key="locale"
+        :value="isOpen"
+      />
 
       <main
         class="app-content"
@@ -20,6 +23,7 @@
 
       <div class="fixed-action-btn">
         <RouterLink
+          v-tooltip="'Создать новую запись'"
           class="btn-floating btn-large blue"
           to="/record"
         >
@@ -35,8 +39,10 @@
 </template>
 
 <script>
+import messages from "@/utils/messages";
 import Navbar from "@/components/app/Navbar.vue";
 import Sidebar from "@/components/app/Sidebar.vue";
+
 
 import { mapGetters } from "vuex";
 
@@ -60,7 +66,24 @@ export default {
   computed: {
     ...mapGetters({
       info: "info/info"
-    })
+    }),
+    error() {
+      return this.$store.getters.error;
+    },
+
+    locale() {
+      return this.$store.getters["info/info"].locale;
+    }
+  },
+
+  watch: {
+    // locale() {
+    //   console.log("Locale changed");
+    // },
+
+    error(fbError) {
+      this.$error(messages[fbError.toString()] || "Что-то пошло не так");
+    }
   },
 
   async mounted() {
@@ -74,5 +97,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

@@ -108,6 +108,12 @@ import { mapGetters } from "vuex";
 import { minValue, required } from "vuelidate/lib/validators";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title("Menu_NewRecord")
+    };
+  },
+
   data() {
     return {
       loading: true,
@@ -162,13 +168,20 @@ export default {
 
       if (this.canCreateRecord) {
         try {
-          await this.$store.dispatch("createRecord", {
-            categoryId: this.category,
+          await this.$store.dispatch("record/createRecord", {
+            categoryId: this.currerntCategory,
             amount: this.amount,
             description: this.description,
             type: this.type,
             date: new Date().toJSON()
           });
+          const bill = this.type === "income" ? this.info.bill + this.amount : this.info.bill - this.amount;
+
+          await this.$store.dispatch("info/updateInfo", { bill });
+          this.$message("Запись успешно создана");
+          this.$v.$reset();
+          this.amount = 1;
+          this.description = "";
         }
         catch (e) {
           console.log(e);

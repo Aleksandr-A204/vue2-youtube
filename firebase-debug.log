@@ -1,0 +1,42 @@
+[debug] [2024-05-04T11:54:43.396Z] ----------------------------------------------------------------------
+[debug] [2024-05-04T11:54:43.397Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Александр\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-05-04T11:54:43.398Z] CLI Version:   13.8.0
+[debug] [2024-05-04T11:54:43.398Z] Platform:      win32
+[debug] [2024-05-04T11:54:43.398Z] Node Version:  v18.16.0
+[debug] [2024-05-04T11:54:43.400Z] Time:          Sat May 04 2024 14:54:43 GMT+0300 (Москва, стандартное время)
+[debug] [2024-05-04T11:54:43.400Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-04T11:54:43.406Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-04T11:54:43.407Z] > authorizing via signed-in user (sanyaponomarev9898@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Пономарёв Саша\Практика Vue JS\vue2-youtube
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-05-04T11:55:42.679Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-05-04T11:55:43.351Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-05-04T11:55:43.352Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project vue2-crm-c24ac (vue2-crm) 
+[info] 
+=== Hosting Setup
+[debug] [2024-05-04T11:55:46.748Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vue2-crm-c24ac [none]
+[debug] [2024-05-04T11:55:47.108Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vue2-crm-c24ac 200
+[debug] [2024-05-04T11:55:47.109Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vue2-crm-c24ac {"projectId":"vue2-crm-c24ac","projectNumber":"12414381417","displayName":"vue2-crm","name":"projects/vue2-crm-c24ac","resources":{"hostingSite":"vue2-crm-c24ac","realtimeDatabaseInstance":"vue2-crm-c24ac-default-rtdb"},"state":"ACTIVE","etag":"1_f58beaa1-cfed-46cd-9659-563092e07910"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

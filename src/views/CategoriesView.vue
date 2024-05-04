@@ -34,6 +34,12 @@ import CategoryEdit from "@/components/CategoryEdit.vue";
 import { mapGetters } from "vuex";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title("Menu_Categories")
+    };
+  },
+
   components: {
     CategoryCreate,
     CategoryEdit

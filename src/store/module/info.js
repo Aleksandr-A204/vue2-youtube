@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, update } from "firebase/database";
 
 export default {
   namespaced: true,
@@ -18,6 +18,19 @@ export default {
   },
 
   actions: {
+    async updateInfo({ commit, getters }, toUpdate) {
+      try {
+        const uid = await this.dispatch("authentication/getUid");
+        const updateData = { ...getters.info, ...toUpdate };
+        commit("setInfo", updateData);
+        return update(ref(getDatabase(), `/users/${uid}/info`), updateData);
+      }
+      catch (error) {
+        this.commit("setError", error);
+        throw error;
+      }
+    },
+
     async fetchInfo() {
       try {
         const uid = await this.dispatch("authentication/getUid");
@@ -28,7 +41,8 @@ export default {
         });
       }
       catch (error) {
-        console.error(error);
+        this.commit("setError", error);
+        throw error;
       }
     }
   },

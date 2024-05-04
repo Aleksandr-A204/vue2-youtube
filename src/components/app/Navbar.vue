@@ -43,7 +43,7 @@
                 class="black-text"
               >
                 <Icon icon="material-symbols:account-circle" />
-                Профиль
+                {{ 'ProfileTitle' | localize }}
               </RouterLink>
             </li>
             <li
